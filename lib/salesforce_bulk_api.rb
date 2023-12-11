@@ -18,6 +18,7 @@ module SalesforceBulkApi
     def initialize(client)
       @connection = SalesforceBulkApi::Connection.new(SALESFORCE_API_VERSION, client)
       @listeners = { job_created: [] }
+      @concurrency_mode = 'Parallel'
     end
 
     def upsert(sobject, records, external_field, get_response = false, send_nulls = false, no_null_list = [], batch_size = 10000, timeout = 1500)
@@ -73,6 +74,7 @@ module SalesforceBulkApi
         sobject: sobject,
         records: records,
         external_field: external_field,
+        concurrency_mode: @concurrency_mode,
         connection: @connection
       )
 
