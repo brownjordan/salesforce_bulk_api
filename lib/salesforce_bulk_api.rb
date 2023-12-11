@@ -11,6 +11,7 @@ require 'salesforce_bulk_api/connection'
 
 module SalesforceBulkApi
   class Api
+    attr_accessor :concurrency_mode
     attr_reader :connection
 
     SALESFORCE_API_VERSION = '46.0'
